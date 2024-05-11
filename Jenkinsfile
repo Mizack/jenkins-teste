@@ -25,7 +25,7 @@ pipeline {
         always {
             cleanWs()
             script {
-                sh 'docker-compose down -v'
+                sh 'docker compose down -v'
             }
         }
     }
