@@ -19,26 +19,11 @@ pipeline {
                 }
             }
         }
-        stage('Remover container') {
-            steps {
-                script {
-                    dir("${WORKSPACE}") {
-                        sh 'docker compose down -v'
-                    }
-                }
-            }
-        }
     }
     
-    // post {
-    //     always {
-    //         cleanWs()
-    //         script {
-    //             dir("${WORKSPACE}") {
-    //                 sh 'docker compose stop'
-    //                 // sh 'docker compose down -v'
-    //             }
-    //         }
-    //     }
-    // }
+    post {
+        always {
+            sh 'docker compose down -v'
+        }
+    }
 }
