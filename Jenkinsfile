@@ -19,7 +19,6 @@ pipeline {
                 }
             }
         }
-
         stage('Testar Rotas Existentes') {
             steps {
                 script {
