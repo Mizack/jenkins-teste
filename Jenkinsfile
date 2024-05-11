@@ -26,7 +26,8 @@ pipeline {
             cleanWs()
             script {
                 dir("${WORKSPACE}") {
-                    sh 'docker compose down -v'
+                    sh 'docker compose stop'
+                    // sh 'docker compose down -v'
                 }
             }
         }
