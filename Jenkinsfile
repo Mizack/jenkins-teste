@@ -14,12 +14,19 @@ pipeline {
             steps {
                 script {
                     dir("${WORKSPACE}") {
-                        sh '/home/miza/Documents/jenkins-teste/docker-compose up -d'
+                        sh 'docker-compose up -d'
                     }
                 }
             }
         }
     }
     
-    
+    post {
+        always {
+            cleanWs()
+            script {
+                sh 'docker-compose down -v'
+            }
+        }
+    }
 }

@@ -2,7 +2,7 @@ version: "3.9"
 services:
   backend:
     image: miza14/docker-jenkins:1.0
-    container_name: docker_jenkins
+    container_name: docker-jenkins
     ports:
       - 5050:5050
     command: python3 app.py
