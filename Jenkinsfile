@@ -19,13 +19,5 @@ pipeline {
         }
     }
     
-    post {
-        always {
-            // Remova os containers e volumes após a execução da pipeline
-            cleanWs()
-            script {
-                sh 'docker-compose down -v'
-            }
-        }
-    }
+    
 }
