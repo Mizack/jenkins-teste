@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
                     dir("${WORKSPACE}") {
-                        sh 'docker-compose up -d'
+                        sh 'docker-compose up -d --build --force-recreate'
                     }
                 }
             }
