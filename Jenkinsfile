@@ -13,7 +13,9 @@ pipeline {
         stage('Executar Docker Compose') {
             steps {
                 script {
-                    sh '/docker-compose up -d'
+                    dir("${WORKSPACE}") {
+                        sh 'docker-compose up -d'
+                    }
                 }
             }
         }
