@@ -19,17 +19,26 @@ pipeline {
                 }
             }
         }
-    }
-    
-    post {
-        always {
-            cleanWs()
-            script {
-                dir("${WORKSPACE}") {
-                    sh 'docker compose stop'
-                    // sh 'docker compose down -v'
+        stage('Remover container') {
+            steps {
+                script {
+                    dir("${WORKSPACE}") {
+                        sh 'docker compose up -d --build --force-recreate'
+                    }
                 }
             }
         }
     }
+    
+    // post {
+    //     always {
+    //         cleanWs()
+    //         script {
+    //             dir("${WORKSPACE}") {
+    //                 sh 'docker compose stop'
+    //                 // sh 'docker compose down -v'
+    //             }
+    //         }
+    //     }
+    // }
 }
