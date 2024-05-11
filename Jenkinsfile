@@ -23,7 +23,7 @@ pipeline {
             steps {
                 script {
                     dir("${WORKSPACE}") {
-                        sh 'docker compose up -d --build --force-recreate'
+                        sh 'docker compose down -v'
                     }
                 }
             }
