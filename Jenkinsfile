@@ -1,9 +1,30 @@
 pipeline {
-    agent { docker { image 'python:3.12.1-alpine3.19' } }
+    agent any
+    
     stages {
-        stage('build') {
+        stage('Construir Imagem Docker') {
             steps {
-                sh 'python --version'
+                script {
+                    def dockerImage = 'miza14/docker-jenkins:1.0'
+                    docker.build(dockerImage)
+                }
+            }
+        }
+        stage('Executar Docker Compose') {
+            steps {
+                script {
+                    sh 'docker-compose up -d'
+                }
+            }
+        }
+    }
+    
+    post {
+        always {
+            // Remova os containers e volumes após a execução da pipeline
+            cleanWs()
+            script {
+                sh 'docker-compose down -v'
             }
         }
     }
