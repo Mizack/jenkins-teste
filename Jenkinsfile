@@ -19,6 +19,16 @@ pipeline {
                 }
             }
         }
+
+        stage('Testar Rotas Existentes') {
+            steps {
+                script {
+                    dir("${WORKSPACE}") {
+                        sh 'docker exec docker-jenkins pytest -v'
+                    }
+                }
+            }
+        }
     }
     
     post {
